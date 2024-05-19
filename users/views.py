@@ -14,7 +14,7 @@ class RegisterView(View):
         context = {
             'form': create_form
         }
-        return render(request, 'register.html', context=context)
+        return render(request, 'users/register.html', context=context)
 
     def post(self, request):
         create_form = CustomUserForm(data=request.POST, files=request.FILES)
@@ -27,7 +27,7 @@ class RegisterView(View):
                 'form': create_form
             }
             messages.error(request,'Something is wrong! \nTry again')
-            return render(request, 'register.html', context=context)
+            return render(request, 'users/register.html', context=context)
         
 class LoginView(View):
     def get(self, request):
@@ -35,7 +35,7 @@ class LoginView(View):
         context = {
             'form': login_form
         }
-        return render(request, 'login.html', context=context)
+        return render(request, 'users/login.html', context=context)
 
     def post(self, request):
         login_form = AuthenticationForm(data=request.POST)
@@ -43,19 +43,19 @@ class LoginView(View):
             user = login_form.get_user()
             login(request, user)
             messages.success(request, 'You are now logged in') 
-            return redirect('home:landing_page')
+            return redirect('home:home_page')
         else:
             context = {
                 'form': login_form
             }
-            return render(request, 'login.html', context=context)
+            return render(request, 'users/login.html', context=context)
 
 
 class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         messages.success(request, 'You are now logged out')
-        return redirect('home:landing_page')
+        return redirect('home:home_page')
 
 class ProfileView(LoginRequiredMixin,View):
     def get(self, request):

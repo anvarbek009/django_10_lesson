@@ -7,6 +7,6 @@
     <a href="{% url  'blogs:blog_detail' b.pk %}"> {{ b.title}}</a><br><br>
 {% endfor %}
 <button> 
-    <a href="{% url 'blog:blog_create' %}">Create Book</a>
+    <a href="{% url 'blogs:blog_create' %}">Create Book</a>
 </button>
 {% endblock content %}
