@@ -34,11 +34,11 @@ class Review(models.Model):
             MinValueValidator(0)
         ]
     )
-    book=models.ForeignKey(Blog,on_delete=models.CASCADE)
+    blog=models.ForeignKey(Blog,on_delete=models.CASCADE)
     user=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
 
     class Meta:
         db_table ='review'
 
     def __str__(self):
-        return f'{self.rating} - {self.book.title} review by {self.user.username}'
+        return f'{self.rating} - {self.blog.title} review by {self.user.username}'
